@@ -19,7 +19,7 @@ function App() {
   }, [])
 
   const fetchData = async () => {
-    const dataFetch = await fetch('http://localhost:3000/tasks')
+    const dataFetch = await fetch('https://my-json-server.typicode.com/reydelshit/JSON-Place-Holder/tasks')
     const res = await dataFetch.json()
     return res
   }
@@ -28,7 +28,7 @@ function App() {
   const [showTask, setShowTask] = useState(false);
 
   const submitTask = async (task) => {
-    const response = await fetch('http://localhost:3000/tasks', {
+    const response = await fetch('https://my-json-server.typicode.com/reydelshit/JSON-Place-Holder/tasks', {
       method: 'POST',
       headers: {
         'Content-type': 'application/json'
@@ -41,14 +41,14 @@ function App() {
   }
 
   const removeBtn = async (id) => {
-    await fetch(`http://localhost:3000/tasks/${id}`,{
+    await fetch(`https://my-json-server.typicode.com/reydelshit/JSON-Place-Holder/tasks/${id}`,{
       method: 'DELETE',
     })
     setTasks(tasks.filter((e) => e.id != id))
   }
 
   const fetchDataTask = async (id) => {
-    const dataFetch = await fetch(`http://localhost:3000/tasks/${id}`)
+    const dataFetch = await fetch(`https://my-json-server.typicode.com/reydelshit/JSON-Place-Holder/tasks/${id}`)
     const res = await dataFetch.json()
     return res
   }
@@ -57,7 +57,7 @@ function App() {
     const taskData = await fetchDataTask(id)
     const updatedTask = { ...taskData, reminder: !taskData.reminder}
 
-    const response  = await fetch(`http://localhost:3000/tasks/${id}`, {
+    const response  = await fetch(`https://my-json-server.typicode.com/reydelshit/JSON-Place-Holder/tasks/${id}`, {
       method: 'PUT',
       headers: {
         'Content-type': 'application/json'
@@ -68,7 +68,7 @@ function App() {
     const res = await response.json()
 
 
-    await fetch('http://localhost:3000/tasks/')
+    await fetch('https://my-json-server.typicode.com/reydelshit/JSON-Place-Holder/tasks/')
     setTasks(tasks.map((rem) => rem.id === id ? {...rem, reminder: res.reminder} : rem))
 }
 
